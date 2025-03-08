@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const host = '192.168.1.8';
+export const host = ''; //IP da sua máquina
 
 const Api = axios.create({
     baseURL: `http://${host}:3000`,
