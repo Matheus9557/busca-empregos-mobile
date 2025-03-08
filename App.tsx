@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StatusBar, SafeAreaView } from 'react-native';
+import MainNavigator from './navigation/MainNavigator';  // Navegação principal
+import { AuthProvider } from './contexts/AuthContext';  // Contexto de autenticação
+import theme from './styles/theme';  // Tema global
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthProvider>
+      {/* SafeAreaView para garantir que o conteúdo não sobreponha a área segura */}
+      <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
+        {/* Barra de status para controlar o estilo da barra superior */}
+        <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
+        
+        {/* Navegação principal */}
+        <MainNavigator />
+      </SafeAreaView>
+    </AuthProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
